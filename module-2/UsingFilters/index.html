@@ -6,20 +6,26 @@
 </head>
 <body ng-init="customers=[{joined: '2000-12-02', name:'John', city:'Chandler', orderTotal: 9.9956}, {joined: '1965-01-25',name:'Zed', city:'Las Vegas', orderTotal: 19.99},{joined: '1944-06-15',name:'Tina', city:'New York', orderTotal:44.99}, {joined: '1995-03-28',name:'Dave', city:'Seattle', orderTotal:101.50}]">
     <h2>Customers</h2>
-    Filter: <input type="text" />
-    <br /><br />
+    <!-- Search by Name -->
+    Filter: <label>Name</label>
+    <input type="text" ng-model="customerFilter.name" />
+    <br />
+    <label>City</label>
+    <input type="text" ng-model="customerFilter.city" /><br />
+    <!-- Search by City -->
     <table>
         <tr>
-            <th>Name</th>
-            <th>City</th>
-            <th>Order Total</th>
-            <th>Joined</th>
+            <!-- reverse allows to determine if it was in ascending or descending -->
+            <th ng-click="CustomSortBy='name';reverse=!reverse">Name</th>
+            <th ng-click="CustomSortBy='city';reverse=!reverse">City</th>
+            <th ng-click="CustomSortBy='orderTotal';reverse=!reverse">Order Total</th>
+            <th ng-click="CustomSortBy='joined';reverse=!reverse">Joined</th>
         </tr>
-        <tr ng-repeat="cust in customers">
-            <td>{{ cust.name }}</td>
-            <td>{{ cust.city }}</td>
-            <td>{{ cust.orderTotal }}</td>
-            <td>{{ cust.joined }}</td>
+        <tr ng-repeat="cust in customers | filter:customerFilter | orderBy:CustomSortBy:reverse">
+            <td>{{ cust.name | uppercase }}</td>
+            <td>{{ cust.city | lowercase }}</td>
+            <td>{{ cust.orderTotal | currency }}</td>
+            <td>{{ cust.joined | date }}</td>
         </tr>
     </table>
 

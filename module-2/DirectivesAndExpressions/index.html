@@ -1,15 +1,15 @@
 <!doctype html>
-<html>
+<html ng-app>
 <head>
     <title>Using Directives</title>
 </head>
-<body>
-    <div>
-        Name: <input type="text" /> 
+<body ng-init="isHidden=true">
+    <div ng-hide="isHidden">
+        Name: <input type="text" ng-model="name" /> {{ name }}
     </div>
-    Hide: <input type="checkbox" />
+    Hide: <input type="checkbox" ng-model="isHidden" />
     <br />
-    <button>Change Name</button>
+    <button ng-click="name='Michelle'">Change Name</button>
     <script src="angular.js"></script>
 </body>
 </html>
