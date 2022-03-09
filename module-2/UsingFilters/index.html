@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <title>Iterating Over Data</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body ng-init="customers=[{joined: '2000-12-02', name:'John', city:'Chandler', orderTotal: 9.9956}, {joined: '1965-01-25',name:'Zed', city:'Las Vegas', orderTotal: 19.99},{joined: '1944-06-15',name:'Tina', city:'New York', orderTotal:44.99}, {joined: '1995-03-28',name:'Dave', city:'Seattle', orderTotal:101.50}]">
+    <h2>Customers</h2>
+    Filter: <input type="text" />
+    <br /><br />
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Order Total</th>
+            <th>Joined</th>
+        </tr>
+        <tr ng-repeat="cust in customers">
+            <td>{{ cust.name }}</td>
+            <td>{{ cust.city }}</td>
+            <td>{{ cust.orderTotal }}</td>
+            <td>{{ cust.joined }}</td>
+        </tr>
+    </table>
+
+    <script src="angular.js"></script>
+</body>
+</html>
