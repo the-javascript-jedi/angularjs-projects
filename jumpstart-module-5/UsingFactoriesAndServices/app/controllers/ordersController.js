@@ -1,12 +1,12 @@
 (function () {
-  var OrdersController = function ($scope, $routeParams, customersFactory) {
+  var OrdersController = function ($scope, $routeParams, customersService) {
     var customerId = $routeParams.customerId;
     $scope.customer = null;
 
     function init() {
       //Search the customers for the customerId
-      $scope.customer = customersFactory.getCustomer(customerId);
-      console.log("customer", $scope.customer);
+      $scope.customer = customersService.getCustomer(customerId);
+      console.log("customer--service", $scope.customer);
       /*{
     "id": 4,
     "joined": "1995-03-28",
@@ -27,7 +27,7 @@
     init();
   };
 
-  OrdersController.$inject = ["$scope", "$routeParams", "customersFactory"];
+  OrdersController.$inject = ["$scope", "$routeParams", "customersService"];
 
   angular
     .module("customersApp")
