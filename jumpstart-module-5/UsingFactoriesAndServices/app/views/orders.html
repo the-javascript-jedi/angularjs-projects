@@ -1,10 +1,11 @@
-<h2>Orders</h2>
+<h2>{{ customer.name }}'s Orders</h2>
 <table>
     <tr>
         <th>Product</th>
         <th>Total</th>
     </tr>
-    <tr ng-repeat="order in orders">
+    <!-- Loop through the orders array -->
+    <tr ng-repeat="order in customer.orders">
         <td>{{ order.product }}</td>
         <td>{{ order.total | currency }}</td>
     </tr>
