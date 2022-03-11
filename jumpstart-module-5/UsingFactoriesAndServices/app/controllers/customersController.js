@@ -1,13 +1,13 @@
 (function () {
-  // Inject customersService service into the controller
-  var CustomersController = function ($scope, customersService) {
+  // Inject customerFactory factory into the controller
+  var CustomersController = function ($scope, customersFactory, appSettings) {
     $scope.sortBy = "name";
     $scope.reverse = false;
     // Initialize customers
     $scope.customers = [];
-
+    $scope.appSettings = appSettings;
     function init() {
-      $scope.customers = customersService.getCustomers();
+      $scope.customers = customersFactory.getCustomers();
     }
     // Call the init on load
     init();
@@ -17,7 +17,7 @@
     };
   };
 
-  CustomersController.$inject = ["$scope", "customersService"];
+  CustomersController.$inject = ["$scope", "customersFactory"];
 
   angular
     .module("customersApp")
