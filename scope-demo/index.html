@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="directivesModule">
+<head>
+    <title>Scope Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body ng-controller="CustomersController">
+    <h2>Shared Scope Directive</h2>  
+    <shared-scope></shared-scope>
+    
+    <h2>Isolate Scope Directive</h2>  
+    <isolate-scope></isolate-scope>
+    
+    <!-- name will allow to pass a string value using ISolate Scope property -->
+    <h2>Isolate Scope With String Directive</h2>  
+    <isolate-scope-with-string name="{{customer.name}}"></isolate-scope-with-string>
+    
+    <!-- scripts -->
+    <script src="scripts/angular.js"></script>  
+    <script src="scripts/directivesController.js"></script>  
+    <script src="sharedScopeDirective.js"></script>  
+    <script src="isolateScopeDirective.js"></script>    
+    <script src="isolateScopeWithStringDirective.js"></script>    
+</body>
+</html>
