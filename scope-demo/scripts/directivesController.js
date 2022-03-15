@@ -42,6 +42,7 @@
         age: counter,
       });
     };
+    // Step 4 -Define the scope function
     // Change Data
     $scope.changeData = function () {
       counter++;
