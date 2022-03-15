@@ -1,0 +1,18 @@
+<h2>Customer Orders</h2>
+<br />
+Filter: <input type="text" ng-model="orderFilter.product" />
+<br /><br />
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Total</th>
+    </tr>
+    <tr ng-repeat="order in orders | filter:orderFilter | orderBy:'name'" class="repeat-animation">
+        <td>{{ order.product }}</td>
+        <td>{{ order.total | currency }}</td>
+    </tr>
+    <tr ng-class="totalType">
+        <td>&nbsp;</td>
+        <td>{{ ordersTotal | currency }}</td>
+    </tr>
+</table>
