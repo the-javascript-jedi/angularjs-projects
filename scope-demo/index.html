@@ -14,8 +14,11 @@
     <isolate-scope></isolate-scope>
     
     <!-- name will allow to pass a string value using ISolate Scope property -->
-    <h2>Isolate Scope With String Directive</h2>  
+    <h2>Isolate Scope With String</h2>  
     <isolate-scope-with-string name="{{customer.name}}"></isolate-scope-with-string>
+    
+    <h2>Isolate Scope With Object</h2>  
+    <isolate-scope-with-object datasource="customer"></isolate-scope-with-object>
     
     <!-- scripts -->
     <script src="scripts/angular.js"></script>  
@@ -23,5 +26,6 @@
     <script src="sharedScopeDirective.js"></script>  
     <script src="isolateScopeDirective.js"></script>    
     <script src="isolateScopeWithStringDirective.js"></script>    
+    <script src="isolateScopeWithObjectDirective.js"></script>    
 </body>
 </html>
