@@ -5,13 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helloworld | AngularJS</title>
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
 </head>
 <!-- ngApp used to bootstrap the application -->
-<body ng-app="ngClassifieds" ng-init="message='Hello World'">
-    <input type="text" ng-model="message">
-    <h1>{{message}}</h1>
+<body ng-app="ngClassifieds" ng-controller="classifiedsCtrl">
+    <input type="text" ng-model="name.first">
+    <h1>Your Name is {{name.first + " " +name.last}}</h1>
     <!-- scripts -->
     <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="components/classifieds.ctr.js"></script>
+
 </body>
 </html>
