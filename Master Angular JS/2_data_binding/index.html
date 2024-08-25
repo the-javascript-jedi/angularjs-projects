@@ -6,12 +6,18 @@
         <meta charset="UTF-8">        
         <!-- load angular via CDN -->
         <script src="https://code.angularjs.org/1.8.2/angular.js"></script>
-        <script src="1_scope-and-interpolation.js"></script>
+        <!-- <script src="1_scope-and-interpolation.js"></script> -->
+        <script src="2_directives-and-two-way-binding.js"></script>
     </head>
     <body>
         <div class="container">
 			<div ng-controller="mainController">                
-                <h1>Hello {{ name + '. How are you?' }}</h1>               
+                <div>
+                    <label>What is your twitter handle?</label>
+                    <input type="text" ng-model="handle" />
+                </div>                
+                <hr />                
+                <h1>twitter.com/{{ lowercasehandle() }}</h1>    
             </div>
 		</div>
     </body>
