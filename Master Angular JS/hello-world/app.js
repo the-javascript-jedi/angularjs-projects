@@ -1,10 +1,5 @@
-// MODULE
-var angularApp = angular.module('angularApp', []);
-
-// CONTROLLERS
-angularApp.controller('mainController', ['$scope', function ($scope) {
-    
-}]);
-
-
-
+// we have added the ngMessages and ngResource modules as dependencies
+var myApp = angular.module('myApp', ['ngMessages', 'ngResource']);
+myApp.controller('mainController', function($scope) {
+   
+});
