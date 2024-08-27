@@ -13,34 +13,12 @@
     <body>
         <div class="container">
 			<div ng-controller="mainController">                
-                <div>
-                    <label>What is your twitter handle?</label>
-                    <input type="text" ng-model="handle" />
+                <input type="button" value="Click Me" ng-click="alertClick()"/>
+                <div ng-cloak>
+                    {{name}}
                 </div>
-                <!-- manually add classes -->
-                <div class="alert" 
-                    ng-class="{
-                        'alert-warning':handle.length < characters,
-                        'alert-danger':handle.length>characters
-                    }"
-                    ng-show="handle.length!==characters"
-                    >
-                    <div ng-show="handle.length<characters">
-                        You have less than 5 characters
-                    </div>
-                    <div ng-show="handle.length>characters">
-                        You have more than 5 characters
-                    </div>
-                </div>
-                <hr />
-                
-                <h1>twitter.com/{{ lowercasehandle() }}</h1>
-
-                <h3>Rules</h3>
-                <ul>
-                    <li ng-repeat="rule in rules">{{rule.rulename}}</li>
-                </ul>
             </div>
+            <br/>
 		</div>
         <!-- scripts -->
         <!-- <script src="1_scope-and-interpolation.js"></script> -->
