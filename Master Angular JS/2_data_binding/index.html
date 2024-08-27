@@ -13,10 +13,12 @@
     <body>
         <div class="container">
 			<div ng-controller="mainController">                
-                <input type="button" value="Click Me" ng-click="alertClick()"/>
-                <div ng-cloak>
-                    {{name}}
-                </div>
+                <h3>Rules</h3>
+                <ul>
+                    <li ng-repeat="rule in rules">
+                        {{ rule.RuleName }}
+                    </li>
+                </ul>
             </div>
             <br/>
 		</div>
@@ -24,6 +26,7 @@
         <!-- <script src="1_scope-and-interpolation.js"></script> -->
         <!-- <script src="2_directives-and-two-way-binding.js"></script> -->
         <!-- <script src="3_watchers-and-digest-loop.js"></script> -->
-        <script src="4_common_directives.js"></script>
+        <!-- <script src="4_common_directives.js"></script> -->
+        <script src="5_xmlHttpRequest.js"></script>
     </body>
 </html>
