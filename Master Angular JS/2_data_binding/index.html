@@ -6,9 +6,9 @@
         <meta charset="UTF-8">        
         <!-- load angular via CDN -->
         <script src="https://code.angularjs.org/1.8.2/angular.js"></script>
-        <!-- <script src="1_scope-and-interpolation.js"></script> -->
-        <!-- <script src="2_directives-and-two-way-binding.js"></script> -->
-        <script src="3_watchers-and-digest-loop.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">       
     </head>
     <body>
         <div class="container">
@@ -17,11 +17,35 @@
                     <label>What is your twitter handle?</label>
                     <input type="text" ng-model="handle" />
                 </div>
-                
+                <!-- manually add classes -->
+                <div class="alert" 
+                    ng-class="{
+                        'alert-warning':handle.length < characters,
+                        'alert-danger':handle.length>characters
+                    }"
+                    ng-show="handle.length!==characters"
+                    >
+                    <div ng-show="handle.length<characters">
+                        You have less than 5 characters
+                    </div>
+                    <div ng-show="handle.length>characters">
+                        You have more than 5 characters
+                    </div>
+                </div>
                 <hr />
                 
                 <h1>twitter.com/{{ lowercasehandle() }}</h1>
+
+                <h3>Rules</h3>
+                <ul>
+                    <li ng-repeat="rule in rules">{{rule.rulename}}</li>
+                </ul>
             </div>
 		</div>
+        <!-- scripts -->
+        <!-- <script src="1_scope-and-interpolation.js"></script> -->
+        <!-- <script src="2_directives-and-two-way-binding.js"></script> -->
+        <!-- <script src="3_watchers-and-digest-loop.js"></script> -->
+        <script src="4_common_directives.js"></script>
     </body>
 </html>
