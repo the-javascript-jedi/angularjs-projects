@@ -22,18 +22,45 @@ myApp.config(function ($routeProvider) {
     });
 });
 
+// configure service
+myApp.service("nameService", function () {
+  var self = this;
+  this.name = "John Doe";
+
+  this.namelength = function () {
+    return self.name.length;
+  };
+});
+
 //127.0.0.1:5500/index.html#/
+// inject the created name into controller
 http: myApp.controller("mainController", [
   "$scope",
-  function ($scope) {
-    $scope.name = "Main";
+  "nameService",
+  "$log",
+  function ($scope, nameService, $log) {
+    //initialize the name and load on page load
+    $scope.name = nameService.name;
+    // update value of name in service whenever name is updated in other pages
+    $scope.$watch("name", function () {
+      nameService.name = $scope.name;
+    });
+    $log.log("nameService.name", nameService.name);
+    $log.log("nameService.namelength()", nameService.namelength());
   },
 ]);
 //127.0.0.1:5500/index.html#/second/2
 http: myApp.controller("secondController", [
   "$scope",
   "$routeParams",
-  function ($scope, $routeParams) {
+  "nameService",
+  function ($scope, $routeParams, nameService) {
+    //initialize the name and load on page load
+    $scope.name = nameService.name;
+    // update value of name in service whenever name is updated in other pages
+    $scope.$watch("name", function () {
+      nameService.name = $scope.name;
+    });
     console.log("routeParams", $routeParams);
     $scope.num = $routeParams.num || 1;
   },
