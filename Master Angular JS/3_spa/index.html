@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="myApp">
+    <head>
+        <title>Introduction to AngularJS</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">        
+        <!-- load angular via CDN -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">       
+    </head>
+    <body>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                <a href="#">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#/second">
+                    Second
+                </a>
+            </li>
+        </ul>
+        <div class="container">
+            <div ng-view></div>
+            <br/>
+		</div>
+        <!-- scripts -->        
+        <script src="https://code.angularjs.org/1.8.2/angular.js"></script>
+        <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+        <script src="1_routing-templates-controllers.js"></script>
+    </body>
+</html>
