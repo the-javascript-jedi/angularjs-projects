@@ -1,0 +1,14 @@
+<h1>This is Main.</h1>
+<hr/>
+<input type="text" ng-model="name">
+
+<h3>Search Results</h3>
+<div class="list-group">
+    <!-- value from scope is person.name -->
+     <!-- we need to specify person-name is an @Input directive in scope{} -as personName -->
+    <!-- <search-result person-name="{{ person.name }}" person-address="{{ person.address }}"></search-result> -->
+    <!-- we send data as object -->
+    <!-- <search-result person-object="person"></search-result> -->
+     <!-- we send a function and object -->
+    <search-result person-object="person" formatted-address-function="formattedAddress(aperson)"></search-result>
+</div>
