@@ -2,7 +2,6 @@ var myApp = angular.module("myApp", ["ngRoute"]);
 
 myApp.config(function ($routeProvider) {
   $routeProvider
-
     .when("/", {
       templateUrl: "pages/main.html",
       controller: "mainController",
@@ -24,8 +23,23 @@ myApp.controller("mainController", [
   "$log",
   function ($scope, $log) {
     $scope.person = {
-      name: "John Doe Object",
-      address: "555 Main St., New York, NY 11111 Object",
+      name: "John Doe passing function",
+      address: "555 Main St.",
+      city: "New York",
+      state: "NY",
+      zip: "11111",
+    };
+
+    $scope.formattedAddress = function (person) {
+      return (
+        person.address +
+        ", " +
+        person.city +
+        ", " +
+        person.state +
+        " " +
+        person.zip
+      );
     };
   },
 ]);
@@ -37,11 +51,10 @@ myApp.directive("searchResult", function () {
     templateUrl: "directives/searchresult.html",
     replace: true,
     scope: {
-      // @ sign for text
-      // personName: "@",
-      // personAddress: "@",
-      // equal sign for objects - it specifies 2 way binding - USE CAREFULLY -changes will affect the parent scope
+      // = | specifies 2 way binding use carefully for objects
       personObject: "=",
+      // & | specifies we are passing functions
+      formattedAddressFunction: "&",
     },
   };
 });
