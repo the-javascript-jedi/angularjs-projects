@@ -4,13 +4,7 @@
 
 <h3>Search Results</h3>
 <div class="list-group">
-    <!-- due to normalization - the directive name will be searchResult -->
-     <!-- 1)A:Attribute -->
-     <search-result></search-result>.
-     <!-- 2)E:Element -->
-     <div search-result></div>
-     <!-- 3)C:Class -->
-     <div class="search-result"></div>
-     <!-- 3)M:Comment -->
-    <!-- directive:search-result -->
+    <!-- value from scope is person.name -->
+     <!-- we need to specify person-name is an @Input directive in scope{} -as personName -->
+    <search-result person-name="{{ person.name }}" person-address="{{ person.address }}"></search-result>
 </div>
