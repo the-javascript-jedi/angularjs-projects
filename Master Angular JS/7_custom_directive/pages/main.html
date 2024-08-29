@@ -6,5 +6,7 @@
 <div class="list-group">
     <!-- value from scope is person.name -->
      <!-- we need to specify person-name is an @Input directive in scope{} -as personName -->
-    <search-result person-name="{{ person.name }}" person-address="{{ person.address }}"></search-result>
+    <!-- <search-result person-name="{{ person.name }}" person-address="{{ person.address }}"></search-result> -->
+    <!-- we send data as object -->
+    <search-result person-object="person"></search-result>
 </div>

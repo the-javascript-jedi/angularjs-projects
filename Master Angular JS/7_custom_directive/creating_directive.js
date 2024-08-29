@@ -24,8 +24,8 @@ myApp.controller("mainController", [
   "$log",
   function ($scope, $log) {
     $scope.person = {
-      name: "John Doe",
-      address: "555 Main St., New York, NY 11111",
+      name: "John Doe Object",
+      address: "555 Main St., New York, NY 11111 Object",
     };
   },
 ]);
@@ -37,8 +37,11 @@ myApp.directive("searchResult", function () {
     templateUrl: "directives/searchresult.html",
     replace: true,
     scope: {
-      personName: "@",
-      personAddress: "@",
+      // @ sign for text
+      // personName: "@",
+      // personAddress: "@",
+      // equal sign for objects - it specifies 2 way binding - USE CAREFULLY -changes will affect the parent scope
+      personObject: "=",
     },
   };
 });
