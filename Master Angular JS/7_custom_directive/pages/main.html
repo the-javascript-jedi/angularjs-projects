@@ -10,5 +10,11 @@
     <!-- we send data as object -->
     <!-- <search-result person-object="person"></search-result> -->
      <!-- we send a function and object -->
-    <search-result person-object="person" formatted-address-function="formattedAddress(aperson)"></search-result>
+    <!-- <search-result person-object="person" formatted-address-function="formattedAddress(aperson)"></search-result> -->
+    <!-- we map the array of objects to create multiple directives-->
+    <search-result 
+        ng-repeat="person in people"
+        person-object="person" 
+        formatted-address-function="formattedAddress(aperson)">
+    </search-result>
 </div>

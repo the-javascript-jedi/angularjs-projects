@@ -22,6 +22,7 @@ myApp.controller("mainController", [
   "$scope",
   "$log",
   function ($scope, $log) {
+    // display this single object in the html
     $scope.person = {
       name: "John Doe passing function",
       address: "555 Main St.",
