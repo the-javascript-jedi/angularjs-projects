@@ -37,15 +37,34 @@
             $scope.classified = {};
             $scope.closeSidebar();
             // show toast notification
-            $mdToast.show(
-              $mdToast
-                .simple()
-                .content("Classification Saved")
-                .position("top, right")
-                .hideDelay(3000)
-            );
+            showToast("Classification Saved");
           }
         };
+
+        $scope.editClassified = function (classifiedForEditing) {
+          // set a flag for editing
+          $scope.editing = true;
+          $scope.openSidebar();
+          $scope.classified = classifiedForEditing;
+        };
+
+        // after editing - close sidebar functionality
+        $scope.saveEdit = function () {
+          $scope.editing = false;
+          $scope.classified = {};
+          $scope.closeSidebar();
+          showToast("Edit Saved");
+        };
+
+        function showToast(message) {
+          $mdToast.show(
+            $mdToast
+              .simple(message)
+              .content()
+              .position("top, right")
+              .hideDelay(3000)
+          );
+        }
       }
     );
 })();

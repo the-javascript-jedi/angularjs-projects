@@ -53,10 +53,11 @@
                     <label for="image">Image Link</label>
                     <input type="text" id="image" ng-model="classified.image">
                 </md-input-container>
-                <md-button ng-click="saveClassified(classified)" class="md-primary">
+                <md-button ng-if="!editing" ng-click="saveClassified(classified)" class="md-primary">
                     Save
                 </md-button>
-                <md-button class="md-primary">
+                <!-- close sidenav -->
+                <md-button ng-if="editing" ng-click="saveEdit()" class="md-primary">
                     Save Edit
                 </md-button>
                 <md-button class="md-warn" ng-click="closeSidebar()">
@@ -103,7 +104,8 @@
                 <div class="classified-admin" ng-if="showAdmin">
                     <h3>Admin</h3>
                     <div layout="row">
-                        <md-button class="md-primary">Edit</md-button>
+                        <!-- open sidenav -->
+                        <md-button class="md-primary" ng-click="editClassified(classified)">Edit</md-button>
                         <md-button class="md-warn">Delete</md-button>
                     </div>
                 </div>
