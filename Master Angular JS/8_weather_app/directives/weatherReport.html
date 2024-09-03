@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <!-- we are passing w as weatherday to the directive -->
+        <h3 class="panel-title">
+            {{convertToDate({dt:weatherDay.dt}) | date:dateFormat}}
+        </h3>
+    </div>
+    <div class="panel-body">
+        <!-- Normal Interpolation -->
+        <!-- <p>Daytime temperature: {{w.temp.day}}</p> -->
+        <!-- call method to convert -->
+        <p>Daytime Temperature (F) - {{convertToStandard({dayTimeTemp:weatherDay.temp.day})}}</p>
+    </div>
+</div>
