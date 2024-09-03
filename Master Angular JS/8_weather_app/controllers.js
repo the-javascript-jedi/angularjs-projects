@@ -2,13 +2,20 @@
 // inject the custom city service (no need for $)
 weatherApp.controller("homeController", [
   "$scope",
+  "$location",
   "cityService",
-  function ($scope, cityService) {
+  function ($scope, $location, cityService) {
     $scope.city = cityService.city;
     // establish 2 way binding
     $scope.$watch("city", function () {
       cityService.city = $scope.city;
     });
+
+    // form submit function
+    $scope.submit = function () {
+      // route to the forecast page
+      $location.path("/forecast");
+    };
   },
 ]);
 
