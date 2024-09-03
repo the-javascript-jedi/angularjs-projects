@@ -1,3 +1,6 @@
 button .material-icons{
     margin-top: 0px;
 }
+.new-button{    
+    display: flex;
+}

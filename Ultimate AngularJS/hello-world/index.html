@@ -20,17 +20,54 @@
                     ngClassifieds
                 </strong>
             </p>
-            <md-button>
+            <md-button class="new-button" ng-click="openSidebar()">
                 <md-icon class="mdi mdi-plus-circle">
                 </md-icon>
                 New Classified
             </md-button>
         </div>
-    </md-toolbar> 
-
-    <button ng-click="showName=!showName">Click</button>
-    <p ng-show="showName">Hello</p>
-
+    </md-toolbar>  
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+    md-component-id="left"
+    >
+        <md-toolbar>
+            <h1 class="md-toolbar-tools">
+                Add a Classified
+            </h1>
+        </md-toolbar>
+        <md-content layout-padding>
+            <form>
+                <md-input-container>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" ng-model="classified.title">
+                </md-input-container>
+                <md-input-container>
+                    <label for="price">Price</label>
+                    <input type="text" id="price" ng-model="classified.price">
+                </md-input-container>
+                <md-input-container>
+                    <label for="description">Description</label>
+                    <input type="text" id="description" ng-model="classified.description">
+                </md-input-container>
+                <md-input-container>
+                    <label for="image">Image Link</label>
+                    <input type="text" id="image" ng-model="classified.image">
+                </md-input-container>
+                <md-button ng-click="saveClassified(classified)" class="md-primary">
+                    Save
+                </md-button>
+                <md-button class="md-primary">
+                    Save Edit
+                </md-button>
+                <md-button class="md-warn" ng-click="closeSidebar()">
+                    Cancel
+                </md-button>
+                <pre>
+                    {{classified|json}}
+                </pre>
+            </form>
+        </md-content>
+    </md-sidenav>
     <md-content class="md-padding" layout="row" layout-wrap>
         <md-card flex="30" ng-repeat="classified in classifieds">
             <img ng-src="{{classified.image}}" alt="" srcset="">
