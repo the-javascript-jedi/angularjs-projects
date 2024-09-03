@@ -26,11 +26,14 @@
         </div>
     </md-toolbar> 
 
+    <button ng-click="showName=!showName">Click</button>
+    <p ng-show="showName">Hello</p>
+
     <md-content class="md-padding" layout="row" layout-wrap>
         <md-card flex="30" ng-repeat="classified in classifieds">
             <img ng-src="{{classified.image}}" alt="" srcset="">
             <md-card-content>
-                <div class="classified-info">
+                <div class="classified-info" ng-show="!showContact">
                     <h2 class="md-title">
                        {{classified.title}}
                     </h2>
@@ -44,6 +47,26 @@
                     <pre style="display: none;">
                         {{classified|json}}
                     </pre>
+                </div>
+                <!-- ng-show/hide just hides elements -->
+                <div class="classified-contact" ng-show="showContact">
+                    <p><md-icon class="mdi mdi-account"></md-icon> {{classified.contact.name}}</p>
+                    <p><md-icon class="mdi mdi-phone"></md-icon> {{classified.contact.phone}}</p>
+                    <p><md-icon class="mdi mdi-email"></md-icon> {{classified.contact.email}}</p>
+                </div>
+                <div layout="row">
+                    <md-button ng-click="showContact=true" ng-show="!showContact">Contact</md-button>
+                    <md-button ng-click="showContact=false" ng-show="showContact">Details</md-button>
+                    <md-button ng-click="showAdmin=true" ng-show="!showAdmin">Admin</md-button>
+                    <md-button ng-click="showAdmin=false" ng-show="showAdmin">Close</md-button>
+                </div>
+                <!-- ng-if removes them from dom -->
+                <div class="classified-admin" ng-if="showAdmin">
+                    <h3>Admin</h3>
+                    <div layout="row">
+                        <md-button class="md-primary">Edit</md-button>
+                        <md-button class="md-warn">Delete</md-button>
+                    </div>
                 </div>
             </md-card-content>
         </md-card>
