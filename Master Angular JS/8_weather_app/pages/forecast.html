@@ -7,19 +7,23 @@ Days: <a href="#/forecast/2" ng-class="{'bg-primary':days==='2'}">2</a> | <a hre
 <div ng-repeat="w in weatherResult.list">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <weather-report 
+                weather-day="w" 
+                convert-to-standard="convertToFahrenheit(dayTimeTemp)"
+                convert-to-date="convertToDate(dt)"
+                date-format="MMM d,y"
+                ></weather-report>
+            <!-- <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         {{convertToDate(w.dt) | date:'MMM d,y'}}
                     </h3>
                 </div>
-                <div class="panel-body">
-                    <!-- Normal Interpolation -->
+                <div class="panel-body">                 
                     <p>Daytime temperature: {{w.temp.day}}</p>
-                    <!-- call method to convert -->
-                     <p>Daytime Temperature (F) - {{convertToFahrenheit(w.temp.day)}}</p>
+                    <p>Daytime Temperature (F) - {{convertToFahrenheit(w.temp.day)}}</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
