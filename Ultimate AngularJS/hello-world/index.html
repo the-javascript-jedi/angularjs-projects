@@ -27,17 +27,23 @@
     </md-toolbar> 
 
     <md-content class="md-padding" layout="row" layout-wrap>
-        <md-card flex="33">
-            <img src="https://www.thegreentractorscheme.co.uk/wp-content/uploads/2023/02/green-tractor-scheme-hero-1920x1080-tiny.jpeg" alt="" srcset="">
+        <md-card flex="30" ng-repeat="classified in classifieds">
+            <img ng-src="{{classified.image}}" alt="" srcset="">
             <md-card-content>
                 <div class="classified-info">
                     <h2 class="md-title">
                        {{classified.title}}
                     </h2>
+                    <h2>
+                        {{classified.posted | date:'longDate'}}
+                    </h2>
                     <h3>
-                        {{classified.price}}
+                        {{classified.price |currency}}
                     </h3>                    
                     <p>{{classified.description}}</p>
+                    <pre style="display: none;">
+                        {{classified|json}}
+                    </pre>
                 </div>
             </md-card-content>
         </md-card>
