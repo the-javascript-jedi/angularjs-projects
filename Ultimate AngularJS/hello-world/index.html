@@ -5,17 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helloworld | AngularJS</title>
-    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+<link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+<link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css"> 
+<link rel="stylesheet" href="css/style.css">
 </head>
 <!-- ngApp used to bootstrap the application -->
-<body ng-app="ngClassifieds" ng-controller="classifiedsCtrl">
-    <input type="text" ng-model="name.first">
-    <h1>Your Name is {{name.first + " " +name.last}}</h1>
+<body ng-app="ngClassifieds" ng-controller="classifiedsCtrl">   
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <p>
+                <strong>
+                    ngClassifieds
+                </strong>
+            </p>
+            <md-button>
+                <md-icon class="mdi mdi-plus-circle">
+                </md-icon>
+                New Classified
+            </md-button>
+        </div>
+    </md-toolbar> 
+
+    <md-content class="md-padding" layout="row" layout-wrap>
+        <md-card flex="33">
+            <img src="https://www.thegreentractorscheme.co.uk/wp-content/uploads/2023/02/green-tractor-scheme-hero-1920x1080-tiny.jpeg" alt="" srcset="">
+            <md-card-content>
+                <div class="classified-info">
+                    <h2 class="md-title">
+                       {{classified.title}}
+                    </h2>
+                    <h3>
+                        {{classified.price}}
+                    </h3>                    
+                    <p>{{classified.description}}</p>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+    <!-- directive -->
+     <hello-world></hello-world>
+    
     <!-- scripts -->
     <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-material/angular-material.js"></script>
     <script src="node_modules/angular-animate/angular-animate.js"></script>
     <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <!-- custom scripts -->
     <script src="scripts/app.js"></script>
     <script src="components/classifieds.ctr.js"></script>
 

@@ -5,11 +5,18 @@
   "use strict";
 
   angular
+    // pass the ngMaterial as providers - dependency injection
+    // reference the library as a module
     .module("ngClassifieds", ["ngMaterial"])
     .config(function ($mdThemingProvider) {
       $mdThemingProvider
         .theme("default")
         .primaryPalette("teal")
         .accentPalette("orange");
+    })
+    .directive("helloWorld", function () {
+      return {
+        template: "<h1> Hello World! {{message}}</h1>",
+      };
     });
 })();
