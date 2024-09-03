@@ -3,11 +3,16 @@
   //   Inject scope into controller
   angular
     .module("ngClassifieds")
-    .controller("classifiedsCtrl", function ($scope, $http) {
-      // mock an api call
-      $http.get("data/classifieds.json").then(function (data) {
-        console.log("data", data);
-        $scope.classifieds = data.data;
-      });
-    });
+    // inject the classifieds factory
+    .controller(
+      "classifiedsCtrl",
+      function ($scope, $http, classifiedsFactory) {
+        $scope.message = "AngularJS";
+        // mock an api call
+        classifiedsFactory.getClassifieds().then(function (data) {
+          console.log("data", data);
+          $scope.classifieds = data.data;
+        });
+      }
+    );
 })();

@@ -11,6 +11,8 @@
 </head>
 <!-- ngApp used to bootstrap the application -->
 <body ng-app="ngClassifieds" ng-controller="classifiedsCtrl">   
+    <!-- directive -->
+    <hello-world></hello-world>
     <md-toolbar>
         <div class="md-toolbar-tools">
             <p>
@@ -71,9 +73,7 @@
             </md-card-content>
         </md-card>
     </md-content>
-    <!-- directive -->
-     <hello-world></hello-world>
-    
+   
     <!-- scripts -->
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-animate/angular-animate.js"></script>
@@ -81,7 +81,9 @@
     <script src="node_modules/angular-material/angular-material.js"></script>
     <!-- custom scripts -->
     <script src="scripts/app.js"></script>
+    <!-- controller -->
     <script src="components/classifieds.ctr.js"></script>
-
+    <!-- factory -->
+    <script src="components/classifieds.fac.js"></script>
 </body>
 </html>
