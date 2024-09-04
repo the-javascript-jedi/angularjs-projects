@@ -6,7 +6,14 @@
     // inject the classifieds factory
     .controller(
       "classifiedsCtrl",
-      function ($scope, $http, classifiedsFactory, $mdSidenav, $mdToast) {
+      function (
+        $scope,
+        $http,
+        classifiedsFactory,
+        $mdSidenav,
+        $mdToast,
+        $mdDialog
+      ) {
         $scope.message = "AngularJS";
         // mock an api call
         classifiedsFactory.getClassifieds().then(function (data) {
@@ -55,7 +62,26 @@
           $scope.closeSidebar();
           showToast("Edit Saved");
         };
+        // delete classified and also show a confirm modal
+        $scope.deleteClassified = function (event, classified) {
+          var confirm = $mdDialog
+            .confirm()
+            .title("Are you sure you want to delete " + classified.title + "?")
+            .ok("Yes")
+            .cancel("No")
+            .targetEvent(event);
 
+          $mdDialog.show(confirm).then(function () {
+            var index = $scope.classifieds.indexOf(classified);
+            $scope.classifieds.splice(index, 1);
+            //ns approach
+            //  let indexToDelte = $scope.classifieds.findIndex(function (data) {
+            //    return classified.id == data.id;
+            //  });
+            //  console.log("indexToDelte", indexToDelte);
+            //  $scope.classifieds.splice(parseInt(indexToDelte), 1);
+          });
+        };
         function showToast(message) {
           $mdToast.show(
             $mdToast
