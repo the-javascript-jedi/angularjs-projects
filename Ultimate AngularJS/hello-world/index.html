@@ -25,8 +25,32 @@
                 </md-icon>
                 New Classified
             </md-button>
+            <md-button class="new-button" ng-click="showFilters=true">
+                <md-icon class="mdi mdi-magnify">
+                </md-icon>
+                Filters
+            </md-button>
         </div>
     </md-toolbar>  
+    <div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
+        <md-input-container>
+            <label>Enter Search Term</label>
+            <input type="text" ng-model="classifiedsFilter">
+        </md-input-container>
+        <md-input-container>
+            <label>Category</label>
+            <md-select ng-model="selectedCategory">
+                <md-option ng-repeat="category in categories" ng-value="category">
+                    {{category}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <div layout="row">
+           <md-button class="md-warn" ng-click="classifiedsFilter='';selectedCategory=''">
+                Clear
+           </md-button>
+        </div>
+    </div>
     <md-sidenav class="md-sidenav-left md-whiteframe-z2"
     md-component-id="left"
     >
@@ -70,7 +94,13 @@
         </md-content>
     </md-sidenav>
     <md-content class="md-padding" layout="row" layout-wrap>
-        <md-card flex="30" ng-repeat="classified in classifieds">
+        <!-- this filter searches through all array values -->
+        <md-card flex="30" ng-repeat="classified in classifieds | 
+                                        filter:classifiedsFilter |
+                                        filter:selectedCategory"
+                                        flex="30"
+                                        class="classified"
+                                        >
             <img ng-src="{{classified.image}}" alt="" srcset="">
             <md-card-content>
                 <div class="classified-info" ng-show="!showContact">
@@ -124,5 +154,8 @@
     <script src="components/classifieds.ctr.js"></script>
     <!-- factory -->
     <script src="components/classifieds.fac.js"></script>
+    <!-- lodash -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
 </body>
 </html>

@@ -19,6 +19,8 @@
         classifiedsFactory.getClassifieds().then(function (data) {
           console.log("data", data);
           $scope.classifieds = data.data;
+          // get categories from each of the array objects
+          $scope.categories = getCategories(data.data);
         });
         // dummy contact
         var contact = {
@@ -90,6 +92,17 @@
               .position("top, right")
               .hideDelay(3000)
           );
+        }
+        //get the categories for dropdown
+        function getCategories(classifieds) {
+          var categories = [];
+          // the data is in an array of objects and each category will be repeated so we want to loop over the items and keep only unique items
+          angular.forEach(classifieds, function (item) {
+            angular.forEach(item.categories, function (category) {
+              categories.push(category);
+            });
+          });
+          return _.uniq(categories);
         }
       }
     );
