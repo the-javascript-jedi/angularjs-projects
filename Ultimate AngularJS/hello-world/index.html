@@ -5,19 +5,157 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helloworld | AngularJS</title>
-    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+<link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+<link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css"> 
+<link rel="stylesheet" href="css/style.css">
 </head>
 <!-- ngApp used to bootstrap the application -->
-<body ng-app="ngClassifieds" ng-controller="classifiedsCtrl">
-    <input type="text" ng-model="name.first">
-    <h1>Your Name is {{name.first + " " +name.last}}</h1>
+<body ng-app="ngClassifieds" ng-controller="classifiedsCtrl">   
+    <!-- directive -->
+    <hello-world></hello-world>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <p>
+                <strong>
+                    ngClassifieds
+                </strong>
+            </p>
+            <md-button class="new-button" ng-click="openSidebar()">
+                <md-icon class="mdi mdi-plus-circle">
+                </md-icon>
+                New Classified
+            </md-button>
+            <md-button class="new-button" ng-click="showFilters=true">
+                <md-icon class="mdi mdi-magnify">
+                </md-icon>
+                Filters
+            </md-button>
+        </div>
+    </md-toolbar>  
+    <div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
+        <md-input-container>
+            <label>Enter Search Term</label>
+            <input type="text" ng-model="classifiedsFilter">
+        </md-input-container>
+        <md-input-container>
+            <label>Category</label>
+            <md-select ng-model="selectedCategory">
+                <md-option ng-repeat="category in categories" ng-value="category">
+                    {{category}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <div layout="row">
+           <md-button class="md-warn" ng-click="classifiedsFilter='';selectedCategory=''">
+                Clear
+           </md-button>
+        </div>
+    </div>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+    md-component-id="left"
+    >
+        <md-toolbar>
+            <h1 class="md-toolbar-tools">
+                Add a Classified
+            </h1>
+        </md-toolbar>
+        <md-content layout-padding>
+            <form>
+                <md-input-container>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" ng-model="classified.title">
+                </md-input-container>
+                <md-input-container>
+                    <label for="price">Price</label>
+                    <input type="text" id="price" ng-model="classified.price">
+                </md-input-container>
+                <md-input-container>
+                    <label for="description">Description</label>
+                    <input type="text" id="description" ng-model="classified.description">
+                </md-input-container>
+                <md-input-container>
+                    <label for="image">Image Link</label>
+                    <input type="text" id="image" ng-model="classified.image">
+                </md-input-container>
+                <md-button ng-if="!editing" ng-click="saveClassified(classified)" class="md-primary">
+                    Save
+                </md-button>
+                <!-- close sidenav -->
+                <md-button ng-if="editing" ng-click="saveEdit()" class="md-primary">
+                    Save Edit
+                </md-button>
+                <md-button class="md-warn" ng-click="closeSidebar()">
+                    Cancel
+                </md-button>
+                <pre>
+                    {{classified|json}}
+                </pre>
+            </form>
+        </md-content>
+    </md-sidenav>
+    <md-content class="md-padding" layout="row" layout-wrap>
+        <!-- this filter searches through all array values -->
+        <md-card flex="30" ng-repeat="classified in classifieds | 
+                                        filter:classifiedsFilter |
+                                        filter:selectedCategory"
+                                        flex="30"
+                                        class="classified"
+                                        >
+            <img ng-src="{{classified.image}}" alt="" srcset="">
+            <md-card-content>
+                <div class="classified-info" ng-show="!showContact">
+                    <h2 class="md-title">
+                       {{classified.title}}
+                    </h2>
+                    <h2>
+                        {{classified.posted | date:'longDate'}}
+                    </h2>
+                    <h3>
+                        {{classified.price |currency}}
+                    </h3>                    
+                    <p>{{classified.description}}</p>
+                    <pre style="display: none;">
+                        {{classified|json}}
+                    </pre>
+                </div>
+                <!-- ng-show/hide just hides elements -->
+                <div class="classified-contact" ng-show="showContact">
+                    <p><md-icon class="mdi mdi-account"></md-icon> {{classified.contact.name}}</p>
+                    <p><md-icon class="mdi mdi-phone"></md-icon> {{classified.contact.phone}}</p>
+                    <p><md-icon class="mdi mdi-email"></md-icon> {{classified.contact.email}}</p>
+                </div>
+                <div layout="row">
+                    <md-button ng-click="showContact=true" ng-show="!showContact">Contact</md-button>
+                    <md-button ng-click="showContact=false" ng-show="showContact">Details</md-button>
+                    <md-button ng-click="showAdmin=true" ng-show="!showAdmin">Admin</md-button>
+                    <md-button ng-click="showAdmin=false" ng-show="showAdmin">Close</md-button>
+                </div>
+                <!-- ng-if removes them from dom -->
+                <div class="classified-admin" ng-if="showAdmin">
+                    <h3>Admin</h3>
+                    <div layout="row">
+                        <!-- open sidenav -->
+                        <md-button class="md-primary" ng-click="editClassified(classified)">Edit</md-button>
+                        <md-button class="md-warn" ng-click="deleteClassified($event,classified)">Delete</md-button>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+   
     <!-- scripts -->
     <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-material/angular-material.js"></script>
     <script src="node_modules/angular-animate/angular-animate.js"></script>
     <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <!-- custom scripts -->
     <script src="scripts/app.js"></script>
+    <!-- controller -->
     <script src="components/classifieds.ctr.js"></script>
+    <!-- factory -->
+    <script src="components/classifieds.fac.js"></script>
+    <!-- lodash -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 
 </body>
 </html>
